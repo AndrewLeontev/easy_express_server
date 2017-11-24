@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-	res.render('index',{title: 'Добро пожаловать!'});
+	res.render('index',{title: 'Сломался компьютер?'});
 });
 
 app.get('/about', (req, res) => {
@@ -22,6 +22,22 @@ app.get('/about', (req, res) => {
 
 app.get('/contact', (req, res) => {
 	res.render('contact');
+});
+
+app.get('/pages/broken_pc', (req, res) => {
+ res.render('./pages/broken_pc');
+});
+
+app.get('/pages/viruses', (req, res) => {
+ res.render('./pages/viruses');
+});
+
+app.get('/pages/bsod', (req, res) => {
+ res.render('./pages/bsod');
+});
+
+app.get('/pages/notebooks_problems', (req, res) => {
+ res.render('./pages/notebooks_problems');
 });
 
 app.post('/contact/send', (req, res) => {
@@ -36,9 +52,9 @@ app.post('/contact/send', (req, res) => {
  const mailOptions = {
   from: `Enter name <Enter email>`,
   to: 'Enter email',
-  subject: 'Website Submission',
-  text: 'You have a submission with the following details... Name: '+req.body.name+'Email: '+req.body.email+ 'Message: '+req.body.message,
-  html: '<p>You have a submission with the following details...</p><ul><li>Name: '+req.body.name+'</li><li>Email: '+req.body.email+'</li><li>Message: '+req.body.message+'</li></ul>'
+  subject: 'Обратная связь',
+  text: 'Сообщение через обратную связь на сайте... Имя: '+req.body.name+'Email: '+req.body.email+ 'Сообщение: '+req.body.message,
+  html: '<p>Сообщение через обратную связь на сайте...</p><ul><li>Имя: '+req.body.name+'</li><li>Email: '+req.body.email+'</li><li>Сообщение: '+req.body.message+'</li></ul>'
  };
 
  transporter.sendMail(mailOptions, (error, info) => {
